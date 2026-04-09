@@ -1,0 +1,60 @@
+CompileFlags:
+  Add:
+    # ── Core GLib / GObject ─────────────────────────────────────────
+    - -I/usr/include/glib-2.0
+    - -I/usr/lib/glib-2.0/include # Arch (no triplet subdir)
+    - -I/usr/include/gobject-2.0
+    - -I/usr/include/gobject-introspection-1.0
+    - -I/usr/include/gio-unix-2.0
+
+    # ── GTK4 + GDK ─────────────────────────────────────────────────
+    - -I/usr/include/gtk-4.0
+    - -I/usr/include/gtk-4.0/unix-print
+
+    # ── Pango / HarfBuzz ───────────────────────────────────────────
+    - -I/usr/include/pango-1.0
+    - -I/usr/include/harfbuzz
+
+    # ── Cairo ──────────────────────────────────────────────────────
+    - -I/usr/include/cairo
+    - -I/usr/include/pixman-1
+
+    # ── GDK-Pixbuf ─────────────────────────────────────────────────
+    - -I/usr/include/gdk-pixbuf-2.0
+
+    # ── Graphene (GTK4 math types) ─────────────────────────────────
+    - -I/usr/include/graphene-1.0
+    - -I/usr/lib/graphene-1.0/include # Arch (no triplet subdir)
+
+    # ── FreeType / libpng / fribidi / webp (pulled in by GTK4) ────
+    - -I/usr/include/freetype2
+    - -I/usr/include/libpng16
+    - -I/usr/include/fribidi
+    - -I/usr/include/webp
+
+    # ── Compiler flags matching the meson build ────────────────────
+    - -D_FILE_OFFSET_BITS=64
+    - -pthread
+    - -std=c11
+
+  # Let clangd infer the rest from compile_commands.json when present
+  CompilationDatabase: build
+
+Diagnostics:
+  UnusedIncludes: Strict
+  ClangTidy:
+    Add:
+      - modernize-*
+      - bugprone-*
+      - performance-*
+    Remove:
+      - modernize-use-trailing-return-type
+      # GTK's G_TYPE_CHECK_INSTANCE_CAST (used by GTK_BOX, G_OBJECT, GTK_LABEL,
+      # etc.) intentionally casts through void* — this is how GLib's runtime type
+      # system works. The reinterpret_cast suggestion is C++ only and does not
+      # apply to C code. Safe to suppress globally for GTK projects.
+      - bugprone-casting-through-void
+      - bugprone-*
+      - performance-no-int-to-ptr
+Index:
+  Background: Build
