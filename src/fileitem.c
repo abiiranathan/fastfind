@@ -1,4 +1,17 @@
 #include "fileitem.h"
+/*
+ * fileitem.c
+ *
+ * Implements the FileItem object, which represents a file or directory in the FastFind index.
+ * Handles memory management, path/basename/dir logic, and provides accessors for file metadata.
+ *
+ * Key features:
+ *   - Efficient memory layout for per-file data
+ *   - Interned directory strings for deduplication
+ *   - Pre-formatted size strings for display
+ *
+ * See fileitem.h for API details.
+ */
 #include <glib.h>
 #include <string.h>
 

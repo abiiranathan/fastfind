@@ -1,4 +1,14 @@
 #pragma once
+/*
+ * indexer.h
+ *
+ * Declares the Indexer type and its API for background file system indexing in FastFind.
+ *
+ * Indexer runs in a background thread, recursively walks the file tree, and delivers batches of FileItem objects.
+ * Supports user and built-in exclude lists, and provides helpers for persistent exclude config.
+ *
+ * See indexer.c for implementation details.
+ */
 #include <gio/gio.h>
 #include <glib.h>
 #include "fileitem.h"

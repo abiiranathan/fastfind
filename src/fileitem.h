@@ -1,4 +1,16 @@
 #pragma once
+/*
+ * fileitem.h
+ *
+ * Declares the FileItem type and its API for representing files and directories in the FastFind index.
+ *
+ * FileItem is a GObject-based structure with optimized memory usage:
+ *   - Stores full path, basename offset, and interned parent directory
+ *   - Provides accessors for name, path, dir, size, type, and mtime
+ *   - Used by the indexer and UI for displaying and filtering files
+ *
+ * See fileitem.c for implementation details.
+ */
 #include <glib-object.h>
 
 G_BEGIN_DECLS

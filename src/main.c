@@ -1,6 +1,17 @@
-/* FastFind – an "Everything"-style instant search for Linux
- * GTK4 + GListStore + GtkColumnView + background indexer
+/*
+ * main.c
+ *
+ * FastFind – an "Everything"-style instant search for Linux
+ *
+ * Application entry point and GTK4 UI logic.
+ * Sets up the main window, search/filtering, and connects to the background indexer.
+ *
+ * Features:
+ *   - GTK4 interface with GListStore and GtkColumnView
+ *   - Live search/filtering and status updates
+ *   - Integration with FileItem and Indexer modules
  */
+
 #define _POSIX_C_SOURCE 200809L
 #include <gio/gio.h>
 #include <glib.h>

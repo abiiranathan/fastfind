@@ -1,4 +1,17 @@
 #define _POSIX_C_SOURCE 200809L
+/*
+ * indexer.c
+ *
+ * Implements the background file system indexer for FastFind.
+ * Recursively scans directories, applies exclude rules, and batches FileItem objects for the UI.
+ *
+ * Features:
+ *   - Built-in and user-defined exclude lists
+ *   - Efficient batch delivery to main thread
+ *   - Heuristics for skipping build and vendor directories
+ *
+ * See indexer.h for API and callback details.
+ */
 #include "indexer.h"
 #include <dirent.h>
 #include <errno.h>
