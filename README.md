@@ -38,7 +38,7 @@ ninja -C builddir
 To run:
 
 ```sh
-./build/fastfind
+./builddir/fastfind
 ```
 
 ## License
